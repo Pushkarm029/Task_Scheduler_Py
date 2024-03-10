@@ -2,17 +2,29 @@ import mysql.connector
 import time
 import random
 import sys
+import os
 import uuid
 import datetime
 from dateutil.relativedelta import relativedelta
 
-db_config = {
-    'user': 'root',
-    'password': 'root',
-    'host': 'localhost',
-    'port': '3307',
-}
+def get_db_config():
+    if os.environ.get('K8S_ENV') == 'true':
+        return {
+            'user': os.environ.get('MARIADB_USER', 'root'),
+            'password': os.environ.get('MARIADB_PASSWORD', 'Kach9JOnQk'),
+            'host': os.environ.get('MARIADB_HOST', 'my-release-mariadb.default.svc.cluster.local'),
+            'port': os.environ.get('MARIADB_PORT', '3306'),
+        }
+    else:
+        return {
+            'user': 'root',
+            'password': 'root',
+            'host': 'localhost',
+            'port': '3306',
+        }
 
+db_config= get_db_config()
+print(db_config)
 conn = mysql.connector.connect(**db_config)
 cursor = conn.cursor()
 

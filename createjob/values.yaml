@@ -1,0 +1,14 @@
+taskName: "example-task"
+scheduledTime: "1646940600"
+recurrence: "daily"
+env:
+  - name: MARIADB_HOST
+    value: my-release-mariadb.default.svc.cluster.local  # Or the IP address/hostname of your MariaDB instance
+  - name: MARIADB_PORT
+    value: "3306"
+  - name: MARIADB_USER
+    value: root  # Or the username you specified during installation
+  - name: MARIADB_PASSWORD
+    value: Kach9JOnQk  # Or the password you specified during installation
+  - name: MARIADB_DATABASE
+    value: mydatabase  # Or the name of the database you created

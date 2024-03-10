@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-update-task
+spec:
+  template:
+    spec:
+      containers:
+      - name: task-scheduler
+        image: pushkarm029/my-task-scheduler
+        command: ["python", "task_scheduler.py", "update", "{{ .Values.taskId }}", "{{ .Values.newName }}", "{{ .Values.newScheduledTime }}"{{ if .Values.newRecurrence }}, "{{ .Values.newRecurrence }}"{{ end }}]
+      restartPolicy: Never

@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-create-task
+spec:
+  template:
+    spec:
+      containers:
+      - name: task-scheduler
+        image: pushkarm029/my-task-scheduler
+        command: ["python", "task_scheduler.py", "create", "{{ .Values.taskName }}", "{{ .Values.scheduledTime }}"{{ if .Values.recurrence }}, "{{ .Values.recurrence }}"{{ end }}]
+      restartPolicy: Never
