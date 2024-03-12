@@ -1,12 +1,26 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Release.Name }}-create-task
+  name: {{ .Release.Name }}
 spec:
   template:
     spec:
       containers:
       - name: task-scheduler
         image: pushkarm029/my-task-scheduler
+        env:
+          - name: CLUSTER_ENV
+            value: "k8s"
+          - name: MARIADB_HOST
+            value: {{ .Values.mariadb.host }}
+          - name: MARIADB_PORT
+            value: {{ .Values.mariadb.port }}
+          - name: MARIADB_USER
+            value: {{ .Values.mariadb.user }}
+          - name: MARIADB_PASSWORD
+            value: {{ .Values.mariadb.password }}
+          - name: DATABASE_NAME
+            value: {{ .Values.mariadb.database }}
         command: ["python", "task_scheduler.py", "create", "{{ .Values.taskName }}", "{{ .Values.scheduledTime }}"{{ if .Values.recurrence }}, "{{ .Values.recurrence }}"{{ end }}]
       restartPolicy: Never
+      backoffLimit: 2
