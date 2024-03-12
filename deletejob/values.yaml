@@ -3,5 +3,5 @@ mariadb:
   host: "my-release-mariadb.default.svc.cluster.local"
   port: "3306"
   user: "root"
-  password: "IkzO66yflD"
+  password: "3MKyWZoXAI"
   database: "db"

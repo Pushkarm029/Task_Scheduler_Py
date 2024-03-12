@@ -12,15 +12,15 @@ spec:
           - name: CLUSTER_ENV
             value: "k8s"
           - name: MARIADB_HOST
-            value: {{ .Values.mariadb.host }}
+            value: "{{ .Values.mariadb.host }}"
           - name: MARIADB_PORT
-            value: {{ .Values.mariadb.port }}
+            value: "{{ .Values.mariadb.port }}"
           - name: MARIADB_USER
-            value: {{ .Values.mariadb.user }}
+            value: "{{ .Values.mariadb.user }}"
           - name: MARIADB_PASSWORD
-            value: {{ .Values.mariadb.password }}
+            value: "{{ .Values.mariadb.password }}"
           - name: DATABASE_NAME
-            value: {{ .Values.mariadb.database }}
+            value: "{{ .Values.mariadb.database }}"
         command: ["python", "task_scheduler.py", "delete", "{{ .Values.taskId }}"]
       restartPolicy: Never
       backoffLimit: 2

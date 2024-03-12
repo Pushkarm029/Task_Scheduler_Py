@@ -1,10 +1,10 @@
 taskId: "123"
 newRecurrence: "daily"
 newName: "updated-task"
-newScheduledTime: "1946942600"
+newScheduledTime: "2024-03-13 10:00:00"
 mariadb:
   host: "my-release-mariadb.default.svc.cluster.local"
   port: "3306"
   user: "root"
-  password: "IkzO66yflD"
+  password: "3MKyWZoXAI"
   database: "db"
